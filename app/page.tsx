@@ -108,7 +108,7 @@ function Header() {
     <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#020916]/95 backdrop-blur-xl">
       <div className="mx-auto flex h-[92px] max-w-[1500px] items-center justify-between px-5 md:px-10">
         <div className="flex items-center gap-3">
-          <Image src="/logo.png" alt="Rovia System" width={270} height={80} priority className="hidden sm:block" />
+          <Image src="/logo1.png" alt="Rovia System" width={270} height={80} priority className="hidden sm:block" />
           <div className="sm:hidden text-xl font-black"><span className="text-[#008cff]">ROVIA</span> SYSTEM</div>
         </div>
         <nav className="hidden items-center gap-9 text-[14px] font-semibold uppercase text-white lg:flex">
