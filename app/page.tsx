@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -40,13 +41,49 @@ const serviceCards = [
 ];
 
 const softwareCards = [
-  ["ROVIA TIME", "Pontaj inteligent", "Sistem complet de pontaj cu aplicație mobilă, rapoarte avansate și notificări în timp real.", Clock],
-  ["ROVIA ERP", "ERP modular", "Gestiune completă a afacerii, de la stocuri și achiziții până la vânzări și rapoarte.", Database],
-  ["ROVIA SIGN", "Digital Signage", "Afișaje digitale pentru hoteluri, restaurante, săli fitness și spații comerciale.", MonitorSmartphone],
-  ["ROVIA VISION", "CCTV Management", "Platformă pentru administrarea camerelor IP și monitorizare centralizată.", Camera],
-  ["ROVIA FLOW", "Workflow intern", "Automatizăm procesele interne pentru eficiență, control și productivitate.", Workflow],
-  ["ROVIA HOTEL", "Mentenanță Hotel", "Aplicație pentru managementul intervențiilor tehnice în hoteluri și facilități.", Building2],
-] as const;
+  {
+    name: "ROVIA TIME",
+    slug: "rovia-time",
+    title: "Pontaj inteligent",
+    image: "rovia-time.png",
+    text: "Sistem complet de pontaj cu aplicație mobilă, rapoarte avansate și notificări în timp real.",
+  },
+  {
+    name: "ROVIA ERP",
+    slug: "rovia-erp",
+    title: "ERP modular",
+    image: "rovia-erp.png",
+    text: "Gestiune completă a afacerii, de la stocuri și achiziții până la vânzări și rapoarte.",
+  },
+  {
+    name: "ROVIA SIGN",
+    slug: "rovia-sign",
+    title: "Digital Signage",
+    image: "rovia-sign.png",
+    text: "Afișaje digitale pentru hoteluri, restaurante, săli fitness și spații comerciale.",
+  },
+  {
+    name: "ROVIA VISION",
+    slug: "rovia-vision",
+    title: "CCTV Management",
+    image: "rovia-vision.png",
+    text: "Platformă pentru administrarea camerelor IP și monitorizare centralizată.",
+  },
+  {
+    name: "ROVIA FLOW",
+    slug: "rovia-flow",
+    title: "Workflow intern",
+    image: "rovia-flow.png",
+    text: "Automatizăm procesele interne pentru eficiență, control și productivitate.",
+  },
+  {
+    name: "ROVIA HOTEL",
+    slug: "rovia-hotel",
+    title: "Mentenanță Hotel",
+    image: "rovia-hotel.png",
+    text: "Aplicație pentru managementul intervențiilor tehnice în hoteluri și facilități.",
+  },
+];
 
 const extraServices = [
   {
@@ -176,7 +213,51 @@ function WhyChoose() {
 }
 
 function Software() {
-  return <section id="software" className="bg-[#f7faff] py-14 text-[#071427]"><Title title="Soluțiile software Rovia" dark /><div className="mx-auto mt-10 grid max-w-[1450px] grid-cols-1 gap-6 px-5 md:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-6">{softwareCards.map(([name, title, text, Icon]) => <div key={name} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.08)]"><div className="h-[140px] bg-[#061a35] p-4"><div className="flex h-full items-center justify-center rounded-lg border border-cyan-400/20 bg-[radial-gradient(circle_at_center,#008cff55,transparent_45%),linear-gradient(135deg,#071427,#0b2b57)] text-cyan-200"><Icon size={46} /></div></div><div className="p-5"><h3 className="mb-4 text-sm font-black uppercase tracking-wide text-[#006ee6]">{name}</h3><h4 className="font-bold text-[#071427]">{title}</h4><p className="mt-4 min-h-[88px] text-sm leading-6 text-slate-700">{text}</p><a className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[#008cff]" href="#contact">Află mai multe <ArrowRight size={15} /></a></div></div>)}</div></section>;
+  return (
+    <section id="software" className="bg-[#f7faff] py-14 text-[#071427]">
+      <Title title="Soluțiile software Rovia" dark />
+
+      <div className="mx-auto mt-10 grid max-w-[1450px] grid-cols-1 gap-6 px-5 md:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-6">
+        {softwareCards.map((item) => (
+          <div
+            key={item.name}
+            className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.08)] duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,140,255,0.25)]"
+          >
+            <div className="relative h-[200px] overflow-hidden bg-[#061a35]">
+              <Image
+                src={`/images/${item.image}`}
+                alt={item.title}
+                fill
+                className="object-cover duration-500 group-hover:scale-110"
+              />
+            </div>
+
+            <div className="p-6">
+              <h3 className="text-sm font-black uppercase tracking-widest text-[#008cff]">
+                {item.name}
+              </h3>
+
+              <h4 className="mt-2 text-xl font-black text-[#071427]">
+                {item.title}
+              </h4>
+
+              <p className="mt-4 min-h-[115px] text-sm leading-6 text-slate-700">
+                {item.text}
+              </p>
+
+              <Link
+                href={`/produse/${item.slug}`}
+                className="mt-6 inline-flex items-center gap-2 font-bold text-[#008cff]"
+              >
+                Vezi produsul
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function MoreServices() {
